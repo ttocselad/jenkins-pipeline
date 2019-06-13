@@ -1,6 +1,6 @@
 def CONTAINER_NAME="jenkins-pipeline"
 def CONTAINER_TAG="latest"
-def DOCKER_HUB_USER="hakdogan"
+def DOCKER_HUB_USER="ttocselad"
 def HTTP_PORT="8090"
 
 node {
@@ -21,7 +21,8 @@ node {
 
     stage('Sonar'){
         try {
-            sh "mvn sonar:sonar"
+            sh "mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=0a5f67c16296713f3538701afca4d33d671583d3
+"
         } catch(error){
             echo "The sonar server could not be reached ${error}"
         }
